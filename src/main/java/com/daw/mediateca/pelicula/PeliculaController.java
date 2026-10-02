@@ -1,6 +1,7 @@
 package com.daw.mediateca.pelicula;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,8 +17,17 @@ public class PeliculaController {
             new Pelicula(2L, "Parásitos", "Bong Joon-ho", 2019),
             new Pelicula(3L, "Origen", "Christopher Nolan", 2010)
     );
+
     @GetMapping // GET /peliculas
     public List<Pelicula> listar() {
         return peliculas; // Spring convierte la lista a JSON automáticamente
+    }
+
+    @GetMapping("/{id}") // GET /peliculas/2 → id = 2
+    public Pelicula buscarPorId(@PathVariable Long id) {
+        return peliculas.stream()
+                .filter(p -> p.id().equals(id))
+                .findFirst()
+                .orElse(null); // Si no existe, respuesta vacía (lo mejoraremos en laUD3)
     }
 }
