@@ -29,5 +29,12 @@ public class SerieController {
                 .orElse(null);
     }
 
+    @GetMapping("/plataforma/{plataforma}") // GET /series/plataforma/Netflix
+    public List<Serie> buscarPorPlataforma(@PathVariable String plataforma) {
+        return series.stream()
+                .filter(s -> s.plataforma().equalsIgnoreCase(plataforma))
+                .toList();
+    }
+
 
 }
