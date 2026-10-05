@@ -1,6 +1,7 @@
 package com.daw.mediateca.pelicula;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,4 +20,13 @@ public class PeliculaController {
     public List<Pelicula> listar() {
         return peliculas; // Spring convierte la lista a JSON automáticamente
     }
+
+    @GetMapping("/director/{director}")
+    // GET /peliculas/director/Bong Joon-ho
+    public List<Pelicula> buscarPorDirector(@PathVariable String director) {
+        return peliculas.stream()
+                .filter(p -> p.director().equalsIgnoreCase(director))
+                .toList();
+    }
+
 }
