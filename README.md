@@ -8,3 +8,4 @@ Práctica de la UD2: trabajo en pareja con Git y GitHub.
 - `GET /series/{id}` · serie por identificador
 - `GET /peliculas` · listado de peliculas
 - `GET /peliculas/{id}` · peliculas por identificador
+- `GET /director/{director}` · buscar por director
